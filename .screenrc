@@ -1,0 +1,5 @@
+screen 0
+screen -t multitail 2 multitail -CS irc -f irc.freenode.net/##freebsd/out -f irc.freenode.net/#infonomicon/out 
+screen -t vi 3 vi
+bind f screen zsh -c "screen -X split;screen -X resize +32; screen -X select 2; screen -X focus; screen -X select 3;exit"
+
