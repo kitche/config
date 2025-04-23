@@ -1,0 +1,74 @@
+# == Essential base build cleanup ==
+WITHOUT_GAMES=yes
+WITHOUT_EXAMPLES=yes
+WITHOUT_OBSOLETE_FILES=yes
+WITHOUT_PROFILE=yes
+WITHOUT_DEBUG_FILES=yes
+
+# == Manpages and localization ==
+WITHOUT_LOCALES=yes
+WITHOUT_NLS=yes
+WITHOUT_MANCOMPRESS=yes
+WITHOUT_MAN_UTILS=yes
+
+# == Kernel & console cleanup ==
+WITHOUT_LEGACY_CONSOLE=yes
+WITHOUT_BOOT=yes
+
+# == Remove outdated filesystems ==
+WITHOUT_UFS=yes        # If ZFS-only (ensure /boot supports ZFS)
+WITHOUT_EXT2FS=yes
+WITHOUT_CD9660=yes     # No need for ISO9660 filesystem
+WITHOUT_MSDOSFS=yes
+WITHOUT_NCP=yes
+
+# == Remove unused protocols and drivers ==
+WITHOUT_IPX=yes
+WITHOUT_NDIS=yes
+WITHOUT_BLUETOOTH=yes
+WITHOUT_WIRELESS=yes
+WITHOUT_FLOPPY=yes
+WITHOUT_ISA=yes
+WITHOUT_USB=yes        # Only if USB is not used at all (headless server)
+
+# == Remove compatibility layers ==
+WITHOUT_LINUX=yes
+WITHOUT_LINUXKPI=yes
+WITHOUT_COMPAT32=yes
+WITHOUT_AOUT=yes
+WITHOUT_KERBEROS=yes
+
+# == Networking ==
+WITHOUT_SENDMAIL=yes
+WITHOUT_BIND=yes
+WITHOUT_MAIL=yes
+WITHOUT_INET6=yes      # Only if you do not need IPv6 support
+
+# == Optional kernel components ==
+WITHOUT_PF=yes         # Remove only if you're not using PF
+WITHOUT_IPFILTER=yes
+WITHOUT_IPFW=yes
+WITHOUT_HAST=yes
+WITHOUT_GPIB=yes
+WITHOUT_RANDOM=yes     # Optional: Disable /dev/random if using hardware entropy
+
+# == Development tools ==
+WITHOUT_GCC=yes
+WITHOUT_GDB=yes
+WITHOUT_LLDB=yes
+WITHOUT_CLANG_EXTRAS=yes
+
+# == Rescue system ==
+WITHOUT_RESCUE=yes
+
+# == Clean up extra binaries ==
+WITHOUT_SYSINSTALL=yes
+WITHOUT_AT=yes
+WITHOUT_ACPI_DEBUG=yes
+
+# == Optional: Only if using ports/packages for crypto ==
+WITHOUT_OPENSSL=yes
+
+# == bhyve support (leave enabled) ==
+# You WANT bhyve components, so don't disable hypervisor support
+# Keep virtio modules (virtio_blk, virtio_net, etc.)
