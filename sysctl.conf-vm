@@ -1,0 +1,9 @@
+# Networking
+net.inet.ip.forwarding=1
+net.link.tap.up_on_open=1
+
+# Improve bhyve/virtio performance
+hw.vmm.topology.cores_per_package=4
+
+# Disable Sendmail cruft
+net.inet6.ip6.auto_linklocal=0
