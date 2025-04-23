@@ -1,0 +1,18 @@
+# Avoid building unnecessary components
+WITHOUT_PROFILE=true
+WITHOUT_DEBUG=true
+WITHOUT_GAMES=true
+WITHOUT_X11=true
+WITHOUT_CUPS=true
+WITHOUT_GDB=true
+WITHOUT_EXAMPLES=true
+WITHOUT_GCC=true
+WITHOUT_LLDB=true
+
+# Optimize for current CPU (change for AMD if needed)
+CPUTYPE?=native
+
+# Use ports/packages OpenSSL if you disabled it in src.conf
+DEFAULT_VERSIONS+=ssl=openssl
+
+# Use synth or poudriere for package building if needed
