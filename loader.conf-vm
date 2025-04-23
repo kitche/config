@@ -1,0 +1,21 @@
+# Load ZFS and needed modules early
+zfs_load="YES"
+vfs.root.mountfrom="zfs:tank/root"
+
+# Load bhyve and virtio drivers
+vmm_load="YES"
+virtio_load="YES"
+virtio_pci_load="YES"
+virtio_blk_load="YES"
+virtio_scsi_load="YES"
+virtio_balloon_load="YES"
+virtio_console_load="YES"
+virtio_input_load="YES"
+if_vtnet_load="YES"
+if_tap_load="YES"
+nmdm_load="YES"           # For serial console in bhyve
+
+# Kernel tuning (adjust based on resources and VM count)
+kern.maxproc="65536"
+kern.maxprocperuid="65536"
+vfs.zfs.arc_max="4G"      # Optional: limit ARC cache size
