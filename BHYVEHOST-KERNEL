@@ -1,0 +1,94 @@
+# Minimal kernel config for a bhyve VM host
+include GENERIC
+ident BHYVEHOST
+
+# Strip out unused subsystems
+nodevice      wlan
+nodevice      wlan_wep
+nodevice      wlan_ccmp
+nodevice      wlan_tkip
+nodevice      an
+nodevice      wi
+nodevice      ath
+nodevice      ath_hal
+nodevice      ath_rate_sample
+nodevice      ral
+nodevice      rum
+nodevice      ural
+nodevice      zyd
+
+nodevice      sound
+nodevice      snd_*
+
+nodevice      usb
+nodevice      ehci
+nodevice      ohci
+nodevice      uhci
+nodevice      xhci
+
+nodevice      firewire
+nodevice      sbp
+nodevice      fwe
+nodevice      fwip
+nodevice      ipfw
+nodevice      ipfilter
+
+# Optional: if you're not using PF either
+# nodevice    pf
+
+# File systems: Only include ZFS
+options       ZFS
+options       GEOM_LABEL
+options       GEOM_MIRROR
+options       GEOM_ELI        # for encryption (optional)
+nodevice      fdescfs
+nodevice      msdosfs
+nodevice      cd9660
+nodevice      ext2fs
+nodevice      udf
+
+# Disable USB CD and floppy support
+nodevice      umass
+nodevice      scbus
+nodevice      cd
+nodevice      pass
+nodevice      da
+nodevice      sa
+nodevice      fd
+
+# Bhyve essentials
+device        vmm         # bhyve hypervisor
+device        nmdm        # null modem (serial console)
+device        if_tap      # TAP interfaces for networking
+device        if_vtnet    # virtio-net
+device        virtio
+device        virtio_pci
+device        virtio_blk
+device        virtio_scsi
+device        virtio_balloon
+device        virtio_console
+device        virtio_input
+
+# Console and TTY
+device        sc
+device        vt
+options       TEKEN_UTF8
+device        uart
+
+# Networking
+device        em          # Intel NICs
+device        igb         # Intel I210
+device        re          # Realtek (only if your host has it)
+device        cxgbe       # Chelsio (if using 10GbE)
+device        vmx         # VMware NIC, sometimes used in VMs
+
+# Misc
+options       SCHED_ULE
+options       PREEMPTION
+options       RACCT       # Required for jail resource limits
+options       RCTL        # Optional: jail resource control
+
+# Optional debugging & stability (recommended for bhyve)
+options       KDB
+options       DDB
+options       STACK
