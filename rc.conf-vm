@@ -1,0 +1,23 @@
+# Base system
+hostname="bhyve-host"
+ifconfig_vtnet0="DHCP"      # Or static IP: inet 192.168.1.10 netmask 255.255.255.0
+sshd_enable="YES"
+zfs_enable="YES"
+
+# Optional: if using PF or bridges
+cloned_interfaces="bridge0 tap0"
+ifconfig_bridge0="addm vtnet0 addm tap0 up"
+
+# Enable bhyve VMs via vm-bhyve (optional)
+vm_enable="YES"
+
+# Optional for jails
+jail_enable="YES"
+
+# Disable unneeded services
+sendmail_enable="NONE"
+sendmail_submit_enable="NO"
+sendmail_outbound_enable="NO"
+sendmail_msp_queue_enable="NO"
+ntpd_enable="NO"
+powerd_enable="NO"
